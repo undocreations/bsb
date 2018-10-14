@@ -1,0 +1,6 @@
+1RocoCow!@#
+
+http://www.seabreezecomputers.com/mysql2mysqli/
+https://github.com/philip/MySQLConverterTool
+https://github.com/dshafik/php7-mysql-shim
+https://dzone.com/articles/convert-mysql-to-mysqli
