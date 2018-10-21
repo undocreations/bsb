@@ -43,6 +43,7 @@ function showWithTitleMessage() {
     swal("Here's a message!", "It's pretty, isn't it?");
 }
 
+
 function showSuccessMessage() {
     swal("Good job!", "You clicked the button!", "success");
 }
@@ -138,3 +139,59 @@ function showAjaxLoaderMessage() {
         }, 2000);
     });
 }
+
+$(document).ready(function(){
+
+    $('#customers_add').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'customers_add.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Καταχώρηση!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+
+
+
+/*
+$(document).ready(function(){
+  $('#customers_add').on('submit',function(e) {  //Don't foget to change the id form
+  $.ajax({
+      url:'add.php', //===PHP file name====
+      data:$(this).serialize(),
+      type:'POST',
+      success:function(data){
+      console.log(data);
+        //Success Message == 'Title', 'Message body', Last one leave as it is
+	    swal("Good job!", "You clicked the button!", "success");
+      },
+      error:function(data){
+        //Error Message == 'Title', 'Message body', Last one leave as it is
+	    swal("Oops...", "Something went wrong :(", "error");
+      }
+    });
+    e.preventDefault();
+	 //This is to Avoid Page Refresh and Fire the Event "Click"
+  });
+});
+*/

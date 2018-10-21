@@ -6,7 +6,7 @@
     $MainNavigation = 'Κεντρικό Μενού';
     $Person = 'person';
     $Lock = 'lock';
-    $Home = 'home';
+    $Home = 'Home';
     $SearchIcon = 'search';
     $Version = '<b>Version: </b> 1.0.0';
     $Add = 'Καταχώρηση';
@@ -70,6 +70,20 @@
     $ProfileChangeTitle = 'Επιτυχής Αλλαγή Κωδικού - AdminBSB';
     $ProfileChangeTitleH2 = 'Επιτυχής Αλλαγή Κωδικού';
     $ProfileChangeSubTitle = 'Θα επιστρέψετε στη Κεντρική σελίδα αυτόματα.';
-
+/* ---------------------------------------------------- */
+    /* customers_add.php - Placeholder */    
+    $PlaceholderBrandName = 'Επωνυμία Εταιρίας';
+    $PlaceholderAddress = 'Διεύθυνση';
+    $PlaceholderAFM = 'Α.Φ.Μ';
+    $PlaceholderDOY = 'Δ.Ο.Υ';
+    $PlaceholderTK = 'Τ.Κ';
+    $PlaceholderPhone = 'Τηλέφωνο';
+    $PlaceholderMobile = 'Κινητό Τηλ.';
+    $PlaceholderFax = 'Fax';
+    $PlaceholderEmail = 'Email';
+    $PlaceholderUrl = 'WebSite';
+    $PlaceholderActivity = 'Δραστηριότητα';
+    $PlaceholderBranch = 'Υποκατάστημα';
+    
 	
 ?>

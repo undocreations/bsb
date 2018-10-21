@@ -4,7 +4,7 @@
             <?php echo $MainNavigation ?>
         </li>
         <li>
-            <a href="../index.php">
+            <a href="../main/main.php">
                 <i class="material-icons">home</i>
                 <span><?php echo $Home ?></span>
             </a>
