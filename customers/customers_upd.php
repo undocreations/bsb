@@ -36,22 +36,45 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "manufacturersfext_add")) {
-  $insertSQL = sprintf("INSERT INTO tbl_manufacturers_fext (manufacturers_fext_brandname) VALUES (%s)",
-                       GetSQLValueString($_POST['manufacturers_fext_brandname'], "text"));
+if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "customers_edit")) {
+  $updateSQL = sprintf("UPDATE tbl_customers SET brand_name=%s, branch=%s, activity=%s, name=%s, lastname=%s, AFM=%s, DOY=%s, address=%s, TK=%s, phone=%s, mobilephone=%s, fax=%s, email=%s, url=%s WHERE customers_id=%s",
+                       GetSQLValueString($_POST['brand_name'], "text"),
+                       GetSQLValueString(isset($_POST['branch']) ? "true" : "", "defined","1","0"),
+                       GetSQLValueString($_POST['activity'], "text"),
+                       GetSQLValueString($_POST['name'], "text"),
+                       GetSQLValueString($_POST['lastname'], "text"),
+                       GetSQLValueString($_POST['afm'], "int"),
+                       GetSQLValueString($_POST['doy'], "text"),
+                       GetSQLValueString($_POST['address'], "text"),
+                       GetSQLValueString($_POST['TK'], "int"),
+                       GetSQLValueString($_POST['phone'], "int"),
+                       GetSQLValueString($_POST['mobilephone'], "int"),
+                       GetSQLValueString($_POST['fax'], "int"),
+                       GetSQLValueString($_POST['email'], "text"),
+                       GetSQLValueString($_POST['url'], "text"),
+                       GetSQLValueString($_POST['customers_id'], "int"));
 
   mysql_select_db($database_bsb, $bsb);
-  $Result1 = mysql_query($insertSQL, $bsb) or die(mysql_error());
+  $Result1 = mysql_query($updateSQL, $bsb) or die(mysql_error());
 /*
-  $insertGoTo = "customers_add.php";
+  $updateGoTo = "customers_upd.php";
   if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
+    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+    $updateGoTo .= $_SERVER['QUERY_STRING'];
   }
-  header(sprintf("Location: %s", $insertGoTo));
  */ 
+  header(sprintf("Location: %s", $updateGoTo));
 }
 
+$colname_RS_CustomersEdit = "-1";
+if (isset($_GET['customers_id'])) {
+  $colname_RS_CustomersEdit = $_GET['customers_id'];
+}
+mysql_select_db($database_bsb, $bsb);
+$query_RS_CustomersEdit = sprintf("SELECT * FROM tbl_customers WHERE customers_id = %s", GetSQLValueString($colname_RS_CustomersEdit, "int"));
+$RS_CustomersEdit = mysql_query($query_RS_CustomersEdit, $bsb) or die(mysql_error());
+$row_RS_CustomersEdit = mysql_fetch_assoc($RS_CustomersEdit);
+$totalRows_RS_CustomersEdit = mysql_num_rows($RS_CustomersEdit);
 ?>
 
 <?php
@@ -97,7 +120,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <meta charset="UTF-8">
                     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                     <title>
-                        <?php echo $ManufacturersFextTitle ?>
+                        <?php echo $MenuEditCustomers ?>
                     </title>
                     <!-- Favicon-->
                     <link rel="icon" href="../favicon.ico" type="image/x-icon">
@@ -205,7 +228,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="card">
                                             <div class="header">
-                                                <h2><?php echo $ManufacturersFextPlaceholder ?></h2>
+                                                <h2><?php echo $Details ?></h2>
                                                 <ul class="header-dropdown m-r-0">
                                                 <li>
                                                     <a href="javascript:void(0);">
@@ -223,22 +246,127 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                        <form ACTION="manufacturersfext_add.php" id="manufacturersfext_add" method="POST" name="manufacturersfext_add">
+                        <form ACTION="<?php echo $editFormAction; ?>" id="customers_edit" method="POST" name="customers_edit">
                             <div class="row clearfix">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input name="manufacturers_fext_brandname" id="manufacturers_fext_brandname" type="text" class="form-control" placeholder="<?php echo $ManufacturersFextPlaceholder ?>">
+                                            <input name="brand_name" type="text" class="form-control" id="brand_name" placeholder="<?php echo $PlaceholderBrandName ?>" value="<?php echo $row_RS_CustomersEdit['brand_name']; ?>">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row clearfix">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="name" type="text" class="form-control" id="name" placeholder="<?php echo $ProfileName ?>" value="<?php echo $row_RS_CustomersEdit['name']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="lastname" type="text" class="form-control" id="lastname" placeholder="<?php echo $ProfileLastName ?>" value="<?php echo $row_RS_CustomersEdit['lastname']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="address" type="text" class="form-control" id="address" placeholder="<?php echo $PlaceholderAddress ?>" value="<?php echo $row_RS_CustomersEdit['address']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="afm" type="text" class="form-control" id="afm" placeholder="<?php echo $PlaceholderAFM ?>" value="<?php echo $row_RS_CustomersEdit['AFM']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="doy" type="text" class="form-control" id="doy" placeholder="<?php echo $PlaceholderDOY ?>" value="<?php echo $row_RS_CustomersEdit['DOY']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="TK" id="TK" type="text" class="form-control" placeholder="<?php echo $PlaceholderTK ?>" value="<?php echo $row_RS_CustomersEdit['TK']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="phone" id="phone" type="text" class="form-control" placeholder="<?php echo $PlaceholderPhone ?>"  value="<?php echo $row_RS_CustomersEdit['phone']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="mobilephone" id="mobilephone" type="text" class="form-control" placeholder="<?php echo $PlaceholderMobile ?>"  value="<?php echo $row_RS_CustomersEdit['mobilephone']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="fax" id="fax" type="text" class="form-control" placeholder="<?php echo $PlaceholderFax ?>"  value="<?php echo $row_RS_CustomersEdit['fax']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <div class="form-line">
+                                        <input name="email" id="email" type="text" class="form-control" placeholder="<?php echo $PlaceholderEmail ?>"  value="<?php echo $row_RS_CustomersEdit['email']; ?>">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="url" id="url" type="text" class="form-control" placeholder="<?php echo $PlaceholderUrl ?>"  value="<?php echo $row_RS_CustomersEdit['url']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input name="activity" id="activity" type="text" class="form-control" placeholder="<?php echo $PlaceholderActivity ?>"  value="<?php echo $row_RS_CustomersEdit['activity']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    
+                                        <div class="form-line">
+                                        <input <?php if (!(strcmp($row_RS_CustomersEdit['branch'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" id="branch" name="branch" class="filled-in">
+                                        <label for="branch"><?php echo $PlaceholderBranch ?></label>
+                                        </div>
+                              </div>
+                          </div>
                        <div class="row">
                       <div class="col-xs-6 js-sweetalert">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" data-type="success" id="submit" onSubmit="JSconfirm()" ><?php echo $ManufacturersFextTitle ?></button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" data-type="success" id="submit" onSubmit="JSconfirm()" ><?php echo $MenuAddCustomers ?></button>
                         </div>
                     </div>
-                       <input type="hidden" name="MM_insert" value="manufacturersfext_add">
+                       <input type="hidden" name="MM_update" value="customers_edit">
+                        <input name="customers_id" type="hidden" id="customers_id" value="<?php echo $row_RS_CustomersEdit['customers_id']; ?>">
                         </form>
                     </div>
                 </div>
@@ -275,3 +403,6 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
 				    <script src="../js/pages/ui/dialogs.js"></script>
     			</body>
                 </html>
+                <?php
+mysql_free_result($RS_CustomersEdit);
+?>

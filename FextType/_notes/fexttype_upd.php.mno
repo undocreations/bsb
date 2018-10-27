@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_RS_FextTypeEdit" value="name:fext_type_id;datatype:int,name:fext_type;datatype:string" />
+</info>

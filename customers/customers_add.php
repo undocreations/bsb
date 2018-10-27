@@ -392,9 +392,5 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <!-- SweetAlert Plugin Js -->
 				    <script src="../plugins/sweetalert/sweetalert2.all.min.js"></script>
 				    <script src="../js/pages/ui/dialogs.js"></script>
-                    <script type="text/javascript">
-
-                    </script>
-					
     			</body>
                 </html>

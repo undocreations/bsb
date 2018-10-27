@@ -11,6 +11,8 @@
     $Version = '<b>Version: </b> 1.0.0';
     $Add = 'Καταχώρηση';
     $SignOut = 'Έξοδος';
+	$Delete = 'Διαγραφή';
+    $Details = 'Αναλυτικά';
 /* ---------------------------------------------------- */	 
     /* Menu */
     $MenuCustomers = 'Πελάτες';
@@ -84,6 +86,27 @@
     $PlaceholderUrl = 'WebSite';
     $PlaceholderActivity = 'Δραστηριότητα';
     $PlaceholderBranch = 'Υποκατάστημα';
-    
-	
+/* ---------------------------------------------------- */
+    /* customers_edit.php */
+	$CustomersTotal = 'Σύνολο Πελατών';
+	$CustomersDetails = 'Λεπτομέριες Αναλυτικά';
+/* ---------------------------------------------------- */
+    /* customers_dets.php */
+	$CustomersCard = 'Καρτέλα Πελάτη';
+	$CustomersUpdateCard = 'Ανανέωση Καρτέλας Πελάτη';
+/* ---------------------------------------------------- */	
+	/* ExtinguisherHeads_add.php */
+	$ExtinguisherHeadsTitle = 'Καταχώρηση Κατασκευαστή Κεφαλών';
+	$ExtinguisherHeadsPlaceholder = 'Κατασκευαστής Κεφαλών';
+	$ExtinguisherHeadsEdit = 'Επεξεργασία Κατασκευαστή Κεφαλών';
+/* ---------------------------------------------------- */	
+	/* manufacturersfext_add.php */	
+	$ManufacturersFextTitle = 'Καταχώρηση Κατασκευαστής Πυροσβεστήρων';
+	$ManufacturersFextPlaceholder = 'Κατασκευαστής Πυροσβεστήρων';
+	$ManufacturersFextEdit = 'Επεξεργασία Κατασκευαστή Πυροσβεστήρων';
+	/* ---------------------------------------------------- */	
+	/* fexttype_add.php */	
+	$FextTypeTitle = 'Καταχώρηση Τύπου Πυροσβεστήρα';
+	$FextTypePlaceholder = 'Τύπος Πυροσβεστήρα';
+	$FextTypeEdit = 'Επεξεργασία Τύπου Πυροσβεστήρα';
 ?>

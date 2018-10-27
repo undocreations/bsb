@@ -36,21 +36,31 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "manufacturersfext_add")) {
-  $insertSQL = sprintf("INSERT INTO tbl_manufacturers_fext (manufacturers_fext_brandname) VALUES (%s)",
-                       GetSQLValueString($_POST['manufacturers_fext_brandname'], "text"));
+if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "extinguisherheads_upd")) {
+  $updateSQL = sprintf("UPDATE tbl_extinguisher_heads SET ext_head_brandname=%s WHERE extinguisher_heads_id=%s",
+                       GetSQLValueString($_POST['ext_head_brandname'], "text"),
+                       GetSQLValueString($_POST['extinguisher_heads_id'], "int"));
 
   mysql_select_db($database_bsb, $bsb);
-  $Result1 = mysql_query($insertSQL, $bsb) or die(mysql_error());
-/*
-  $insertGoTo = "customers_add.php";
+  $Result1 = mysql_query($updateSQL, $bsb) or die(mysql_error());
+
+  $updateGoTo = "ExtinguisherHeads_upd.php";
   if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
+    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+    $updateGoTo .= $_SERVER['QUERY_STRING'];
   }
-  header(sprintf("Location: %s", $insertGoTo));
- */ 
+  header(sprintf("Location: %s", $updateGoTo));
 }
+
+$colname_RS_ExtinguisherHeadsEdit = "-1";
+if (isset($_GET['extinguisher_heads_id'])) {
+  $colname_RS_ExtinguisherHeadsEdit = $_GET['extinguisher_heads_id'];
+}
+mysql_select_db($database_bsb, $bsb);
+$query_RS_ExtinguisherHeadsEdit = sprintf("SELECT * FROM tbl_extinguisher_heads WHERE extinguisher_heads_id = %s", GetSQLValueString($colname_RS_ExtinguisherHeadsEdit, "int"));
+$RS_ExtinguisherHeadsEdit = mysql_query($query_RS_ExtinguisherHeadsEdit, $bsb) or die(mysql_error());
+$row_RS_ExtinguisherHeadsEdit = mysql_fetch_assoc($RS_ExtinguisherHeadsEdit);
+$totalRows_RS_ExtinguisherHeadsEdit = mysql_num_rows($RS_ExtinguisherHeadsEdit);
 
 ?>
 
@@ -97,7 +107,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <meta charset="UTF-8">
                     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                     <title>
-                        <?php echo $ManufacturersFextTitle ?>
+                        <?php echo $ExtinguisherHeadsTitle ?>
                     </title>
                     <!-- Favicon-->
                     <link rel="icon" href="../favicon.ico" type="image/x-icon">
@@ -205,7 +215,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="card">
                                             <div class="header">
-                                                <h2><?php echo $ManufacturersFextPlaceholder ?></h2>
+                                                <h2><?php echo $ExtinguisherHeadsPlaceholder ?></h2>
                                                 <ul class="header-dropdown m-r-0">
                                                 <li>
                                                     <a href="javascript:void(0);">
@@ -223,22 +233,23 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                        <form ACTION="manufacturersfext_add.php" id="manufacturersfext_add" method="POST" name="manufacturersfext_add">
+                        <form ACTION="<?php echo $editFormAction; ?>" id="extinguisherheads_upd" method="POST" name="extinguisherheads_upd">
                             <div class="row clearfix">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input name="manufacturers_fext_brandname" id="manufacturers_fext_brandname" type="text" class="form-control" placeholder="<?php echo $ManufacturersFextPlaceholder ?>">
+                                            <input name="ext_head_brandname" type="text" class="form-control" id="ext_head_brandname" placeholder="<?php echo $ExtinguisherHeadsPlaceholder ?>" value="<?php echo $row_RS_ExtinguisherHeadsEdit['ext_head_brandname']; ?>">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                        <div class="row">
                       <div class="col-xs-6 js-sweetalert">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" data-type="success" id="submit" onSubmit="JSconfirm()" ><?php echo $ManufacturersFextTitle ?></button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" data-type="success" id="submit" onSubmit="JSconfirm()" ><?php echo $ExtinguisherHeadsTitle ?></button>
                         </div>
                     </div>
-                       <input type="hidden" name="MM_insert" value="manufacturersfext_add">
+                        <input name="extinguisher_heads_id" type="hidden" id="extinguisher_heads_id" value="<?php echo $row_RS_ExtinguisherHeadsEdit['extinguisher_heads_id']; ?>">
+                        <input type="hidden" name="MM_update" value="extinguisherheads_upd">
                         </form>
                     </div>
                 </div>
@@ -275,3 +286,6 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
 				    <script src="../js/pages/ui/dialogs.js"></script>
     			</body>
                 </html>
+                <?php
+mysql_free_result($RS_ExtinguisherHeadsEdit);
+?>

@@ -36,21 +36,31 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "manufacturersfext_add")) {
-  $insertSQL = sprintf("INSERT INTO tbl_manufacturers_fext (manufacturers_fext_brandname) VALUES (%s)",
-                       GetSQLValueString($_POST['manufacturers_fext_brandname'], "text"));
+if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "manufacturersfext_upd")) {
+  $updateSQL = sprintf("UPDATE tbl_manufacturers_fext SET manufacturers_fext_brandname=%s WHERE manufacturers_fext_id=%s",
+                       GetSQLValueString($_POST['manufacturers_fext_brandname'], "text"),
+                       GetSQLValueString($_POST['manufacturers_fext_id'], "int"));
 
   mysql_select_db($database_bsb, $bsb);
-  $Result1 = mysql_query($insertSQL, $bsb) or die(mysql_error());
-/*
-  $insertGoTo = "customers_add.php";
+  $Result1 = mysql_query($updateSQL, $bsb) or die(mysql_error());
+
+  $updateGoTo = "manufacturersfext_upd.php";
   if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
+    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+    $updateGoTo .= $_SERVER['QUERY_STRING'];
   }
-  header(sprintf("Location: %s", $insertGoTo));
- */ 
+  header(sprintf("Location: %s", $updateGoTo));
 }
+
+$colname_RS_ManufacturersFextEdit = "-1";
+if (isset($_GET['manufacturers_fext_id'])) {
+  $colname_RS_ManufacturersFextEdit = $_GET['manufacturers_fext_id'];
+}
+mysql_select_db($database_bsb, $bsb);
+$query_RS_ManufacturersFextEdit = sprintf("SELECT * FROM tbl_manufacturers_fext WHERE manufacturers_fext_id = %s", GetSQLValueString($colname_RS_ManufacturersFextEdit, "int"));
+$RS_ManufacturersFextEdit = mysql_query($query_RS_ManufacturersFextEdit, $bsb) or die(mysql_error());
+$row_RS_ManufacturersFextEdit = mysql_fetch_assoc($RS_ManufacturersFextEdit);
+$totalRows_RS_ManufacturersFextEdit = mysql_num_rows($RS_ManufacturersFextEdit);
 
 ?>
 
@@ -97,7 +107,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <meta charset="UTF-8">
                     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                     <title>
-                        <?php echo $ManufacturersFextTitle ?>
+                        <?php echo $ExtinguisherHeadsTitle ?>
                     </title>
                     <!-- Favicon-->
                     <link rel="icon" href="../favicon.ico" type="image/x-icon">
@@ -223,12 +233,12 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                        <form ACTION="manufacturersfext_add.php" id="manufacturersfext_add" method="POST" name="manufacturersfext_add">
+                        <form ACTION="<?php echo $editFormAction; ?>" id="manufacturersfext_upd" method="POST" name="manufacturersfext_upd">
                             <div class="row clearfix">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input name="manufacturers_fext_brandname" id="manufacturers_fext_brandname" type="text" class="form-control" placeholder="<?php echo $ManufacturersFextPlaceholder ?>">
+                                            <input name="manufacturers_fext_brandname" type="text" class="form-control" id="manufacturers_fext_brandname" placeholder="<?php echo $ManufacturersFextPlaceholder ?>" value="<?php echo $row_RS_ManufacturersFextEdit['manufacturers_fext_brandname']; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -238,7 +248,8 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect" data-type="success" id="submit" onSubmit="JSconfirm()" ><?php echo $ManufacturersFextTitle ?></button>
                         </div>
                     </div>
-                       <input type="hidden" name="MM_insert" value="manufacturersfext_add">
+                        <input name="manufacturers_fext_id" type="hidden" id="manufacturers_fext_id" value="<?php echo $row_RS_ManufacturersFextEdit['manufacturers_fext_id']; ?>">
+                        <input type="hidden" name="MM_update" value="manufacturersfext_upd">
                         </form>
                     </div>
                 </div>
@@ -275,3 +286,6 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
 				    <script src="../js/pages/ui/dialogs.js"></script>
     			</body>
                 </html>
+                <?php
+mysql_free_result($RS_ManufacturersFextEdit);
+?>

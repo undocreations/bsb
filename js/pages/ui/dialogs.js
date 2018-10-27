@@ -172,6 +172,235 @@ $(document).ready(function(){
 });
 
 
+$(document).ready(function(){
+
+    $('#customers_edit').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'customers_upd.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Επεξεργασία!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* ExtinguisherHeads_add.php */
+$(document).ready(function(){
+
+    $('#ExtinguisherHeads_add').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'ExtinguisherHeads_add.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Καταχώρηση!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο Κατασκευαστή Κεφαλής.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - ExtinguisherHeads_add.php */
+
+/* manufacturersfext_add.php */
+
+$(document).ready(function(){
+
+    $('#manufacturersfext_add').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'manufacturersfext_add.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Καταχώρηση!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο Κατασκευαστή Πυροσβεστήρων.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - manufacturersfext_add.php */
+
+/* fexttype_add.php */
+$(document).ready(function(){
+
+    $('#fexttype_add').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'fexttype_add.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Καταχώρηση!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο Τύπο Πυροσβεστήρα.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - fexttype_add.php */
+
+/* fexttype_upd.php */
+$(document).ready(function(){
+
+    $('#fexttype_upd').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'fexttype_upd.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Επεξεργασία!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - fexttype_upd.php */
+
+/* ExtinguisherHeads_upd.php */
+$(document).ready(function(){
+
+    $('#extinguisherheads_upd').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'extinguisherheads_upd.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Επεξεργασία!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - ExtinguisherHeads_upd.php */
+
+/* manufacturersfext_upd.php */
+$(document).ready(function(){
+
+    $('#manufacturersfext_upd').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'manufacturersfext_upd.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Επεξεργασία!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - manufacturersfext_upd.php */
+
 
 /*
 $(document).ready(function(){
