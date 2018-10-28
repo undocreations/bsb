@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <info>
 	<infoitem key="UD_RS_CustomersEdit" value="name:customers_id;datatype:int,name:date;datatype:timestamp,name:brand_name;datatype:string,name:branch;datatype:int,name:activity;datatype:string,name:name;datatype:string,name:lastname;datatype:string,name:AFM;datatype:int,name:DOY;datatype:string,name:address;datatype:string,name:TK;datatype:int,name:phone;datatype:int,name:mobilephone;datatype:int,name:fax;datatype:int,name:email;datatype:string,name:url;datatype:string" />
+	<infoitem key="UD_Recordset1" value="name:brand_name;datatype:string,name:fire_extinguisher_id;datatype:int,name:customers_id;datatype:int,name:extinguisher_heads_id;datatype:int,name:fext_type_id;datatype:int,name:manufacturers_fext_id;datatype:int,name:serialnumber;datatype:string,name:year;datatype:date,name:installation_date;datatype:date,name:notes;datatype:blob,name:ext_head_brandname;datatype:string,name:fext_type;datatype:string,name:manufacturers_fext_brandname;datatype:string,name:customers_id;datatype:int" />
 </info>

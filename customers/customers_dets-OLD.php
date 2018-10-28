@@ -31,23 +31,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-function makeStamp($theString) {
-if (ereg("([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})", $theString, $strReg)) {
-$theStamp = mktime($strReg[4],$strReg[5],$strReg[6],$strReg[2],$strReg[3],$strReg[1]);
-} else if (ereg("([0-9]{4})-([0-9]{2})-([0-9]{2})", $theString, $strReg)) {
-$theStamp = mktime(0,0,0,$strReg[2],$strReg[3],$strReg[1]);
-} else if (ereg("([0-9]{2}):([0-9]{2}):([0-9]{2})", $theString, $strReg)) {
-$theStamp = mktime($strReg[1],$strReg[2],$strReg[3],0,0,0);
-}
-return $theStamp;
-}
-
-function makeDateTime($theString, $theFormat) {
-$theDate=date($theFormat, makeStamp($theString));
-return $theDate;
-}
-
-
 $colname_RS_CustomersEdit = "-1";
 if (isset($_GET['customers_id'])) {
   $colname_RS_CustomersEdit = $_GET['customers_id'];
@@ -57,40 +40,9 @@ $query_RS_CustomersEdit = sprintf("SELECT * FROM tbl_customers WHERE customers_i
 $RS_CustomersEdit = mysql_query($query_RS_CustomersEdit, $bsb) or die(mysql_error());
 $row_RS_CustomersEdit = mysql_fetch_assoc($RS_CustomersEdit);
 $totalRows_RS_CustomersEdit = mysql_num_rows($RS_CustomersEdit);
-
-
-$colname_Recordset1 = "-1";
-if (isset($_GET['customers_id'])) {
-  $colname_Recordset1 = $_GET['customers_id'];
-}
-
-mysql_select_db($database_bsb, $bsb);
-$query_Recordset1 = sprintf("SELECT
-    `tbl_customers`.`brand_name`
-    , `tbl_fire_extinguisher`.*
-    , `tbl_extinguisher_heads`.`ext_head_brandname`
-    , `tbl_fext_type`.`fext_type`
-    , `tbl_manufacturers_fext`.`manufacturers_fext_brandname`
-    , `tbl_customers`.`customers_id`
-FROM
-    `bsb`.`tbl_customers`
-    INNER JOIN `bsb`.`tbl_fire_extinguisher` 
-        ON (`tbl_customers`.`customers_id` = `tbl_fire_extinguisher`.`customers_id`)
-    INNER JOIN `bsb`.`tbl_extinguisher_heads` 
-        ON (`tbl_extinguisher_heads`.`extinguisher_heads_id` = `tbl_fire_extinguisher`.`extinguisher_heads_id`)
-    INNER JOIN `bsb`.`tbl_fext_type` 
-        ON (`tbl_fext_type`.`fext_type_id` = `tbl_fire_extinguisher`.`fext_type_id`)
-    INNER JOIN `bsb`.`tbl_manufacturers_fext` 
-        ON (`tbl_manufacturers_fext`.`manufacturers_fext_id` = `tbl_fire_extinguisher`.`manufacturers_fext_id`) WHERE (`tbl_customers`.`customers_id` = %s);", GetSQLValueString($colname_Recordset1, "int"));
-$Recordset1 = mysql_query($query_Recordset1, $bsb) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = mysql_num_rows($Recordset1);
-
-
-
 ?>
 
-<?php
+        <?php
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -147,8 +99,6 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
 
                     <!-- Waves Effect Css -->
                     <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
-                    <!-- JQuery DataTable Css -->
-				    <link href="../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
 
                     <!-- Animation Css -->
                     <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
@@ -257,26 +207,25 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     </div>
                                 </div>
                                 <!-- #END# Body Copy -->
-                                
-                                
-                                
-                                            <!-- Example Tab -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" data-toggle="tab"><?php echo $CustomersCard ?></a></li>
-                                <li role="presentation"><a href="#profile" data-toggle="tab">PROFILE</a></li>
-                                <li role="presentation"><a href="#messages" data-toggle="tab">MESSAGES</a></li>
-                                <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                    <p>
+                                <div class="body">
+                                    <div class="row clearfix">
+                                        <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                            <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading" role="tab" id="headingOne_1">
+                                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="true" aria-controls="collapseOne_1">
+                                               <?php echo $CustomersCard ?>
+                                            </a>
+                                        </h4>
+                                                    </div>
+                                                    <div id="collapseOne_1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_1">
+                                                        <div class="panel-body">
+                                                            <!-- Multi Column -->
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="card">
+                                                                        <div class="body">
                                                                             <form ACTION="" id="customers_edit" method="POST" name="customers_edit">
                                                                                 <div class="row clearfix">
                                                                                     <div class="col-md-12">
@@ -400,69 +349,47 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                                                                 </div>
                                                                                 <input name="customers_id" type="hidden" id="customers_id" value="<?php echo $row_RS_CustomersEdit['customers_id']; ?>">
                                                                             </form>
-                                    </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- #END# Multi Column -->
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading" role="tab" id="headingTwo_1">
+                                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseTwo_1" aria-expanded="false" aria-controls="collapseTwo_1">
+                                            Collapsible Group Item #2
+                                        </a>
+                                    </h4>
+                                                </div>
+                                                <div id="collapseTwo_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_1">
+                                                    <div class="panel-body">
+                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading" role="tab" id="headingThree_1">
+                                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false" aria-controls="collapseThree_1">
+                                            Collapsible Group Item #3
+                                        </a>
+                                    </h4>
+                                                </div>
+                                                <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1">
+                                                    <div class="panel-body">
+                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="profile">
-                                    <b>Profile Content</b>
-                                    <p>
-							<div class="table-responsive">
-                                <table id="data" class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                    <thead>
-                                        <tr>
-                                            <th><?php echo $PlaceholderBrandName ?></th>
-                                            <th><?php echo $ExtinguisherHeadsPlaceholder ?></th>
-                                            <th><?php echo $FextTypePlaceholder ?></th>
-                                            <th><?php echo $ManufacturersFextPlaceholder ?></th>
-                                            <th><?php echo $FireExtSerialNumber?></th>
-                                            <th><?php echo $FireExtDateCreation?></th>
-                                            <th><?php echo $FireExtDateAdd?></th>
-                                            <th><?php echo $MenuEditCustomers?></th>
-                                            <th><?php echo $Delete ?></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php do { ?>
-                                        <tr>
-                                            <td><?php echo $row_Recordset1['brand_name']; ?></td>
-                                            <td><?php echo $row_Recordset1['ext_head_brandname']; ?></td>
-                                            <td><?php echo $row_Recordset1['fext_type']; ?></td>
-                                            <td><?php echo $row_Recordset1['manufacturers_fext_brandname']; ?></td>
-                                            <td><?php echo $row_Recordset1['serialnumber']; ?></td>
-                                            <td><?php echo makeDateTime($row_Recordset1['year'], 'Y'); ?></td>
-                                            <td><?php echo makeDateTime($row_Recordset1['installation_date'], 'd/m/y'); ?></td>
-                                            <td><a href=""><img src="../images/icons/application_view_list.png" width="16" height="16" data-toggle="tooltip" data-placement="top" title="<?php echo $CustomersDetails ?>"></a></td>
-                                            <td><a href=""><img src="../images/icons/layout_edit.png" width="16" height="16" data-toggle="tooltip" data-placement="top" title="<?php echo $MenuEditCustomers ?>"></a></td>
-                                          </tr>
-                                          <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                              </p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="messages">
-                                    <b>Message Content</b>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                                        pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                                        sadipscing mel.
-                                    </p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="settings">
-                                    <b>Settings Content</b>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                                        pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                                        sadipscing mel.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Example Tab -->
 
 
                                 <!-- Jquery Core Js -->
@@ -479,19 +406,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
 
                                 <!-- Waves Effect Plugin Js -->
                                 <script src="../plugins/node-waves/waves.js"></script>
-                                <!-- Jquery DataTable Plugin Js -->
-                                <!-- Tooltips -->
-                                <script src="../js/pages/ui/tooltips-popovers.js"></script>
-                                <script src="../plugins/jquery-datatable/jquery.dataTables.js"></script>
-                                <script src="../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-                                <script src="../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-                                <script src="../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-                                <script src="../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-                                <script src="../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-                                <script src="../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-                                <script src="../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-                                <script src="../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-                                <script src="../js/pages/tables/jquery-datatable.js"></script>
+
                                 <!-- Bootstrap Notify Plugin Js -->
                                 <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
@@ -505,6 +420,4 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                 </html>
                 <?php
 				mysql_free_result($RS_CustomersEdit);
-				mysql_free_result($Recordset1);
 				?>
-

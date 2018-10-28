@@ -5,4 +5,6 @@
 	<infoitem key="MM_Session_Count" value="3" />
 	<infoitem key="MM_Session2" value="MM_Username" />
 	<infoitem key="MM_Session3" value="PrevUrl" />
+	<infoitem key="MM_URL1" value="customers_id" />
+	<infoitem key="MM_URL_Count" value="1" />
 </info>

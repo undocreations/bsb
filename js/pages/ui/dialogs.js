@@ -401,7 +401,38 @@ $(document).ready(function(){
 });
 /* #END# - manufacturersfext_upd.php */
 
+/* fireext_add.php */
+$(document).ready(function(){
 
+    $('#fireext_add').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'fireext_add.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Επεξεργασία!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο Πυροσβεστήρα.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                location.reload();
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - fireext_add */
 /*
 $(document).ready(function(){
   $('#customers_add').on('submit',function(e) {  //Don't foget to change the id form

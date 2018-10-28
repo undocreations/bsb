@@ -11,8 +11,9 @@
     $Version = '<b>Version: </b> 1.0.0';
     $Add = 'Καταχώρηση';
     $SignOut = 'Έξοδος';
-	$Delete = 'Διαγραφή';
+	$Delete = 'Ανενεργός';
     $Details = 'Αναλυτικά';
+	$Notes = 'Παρατηρήσεις';
 /* ---------------------------------------------------- */	 
     /* Menu */
     $MenuCustomers = 'Πελάτες';
@@ -109,4 +110,13 @@
 	$FextTypeTitle = 'Καταχώρηση Τύπου Πυροσβεστήρα';
 	$FextTypePlaceholder = 'Τύπος Πυροσβεστήρα';
 	$FextTypeEdit = 'Επεξεργασία Τύπου Πυροσβεστήρα';
+	/* ---------------------------------------------------- */	
+	/* fireext_add.php */	
+	$FireExtTitle = 'Καταχώρηση Πυροσβεστήρων';
+	$FireExtPlaceholder = 'Τύπος Πυροσβεστήρα';
+	$FireExtEdit = 'Επεξεργασία Πυροσβεστήρων';
+	$FireExtSerialNumber = 'Serial Number';
+	$FireExtDateCreation = 'Έτος Κατασκευής';
+	$FireExtDateAdd = 'Ημερομηνία Εγκατάστασης';
+	
 ?>
