@@ -31,22 +31,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-function makeStamp($theString) {
-if (ereg("([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})", $theString, $strReg)) {
-$theStamp = mktime($strReg[4],$strReg[5],$strReg[6],$strReg[2],$strReg[3],$strReg[1]);
-} else if (ereg("([0-9]{4})-([0-9]{2})-([0-9]{2})", $theString, $strReg)) {
-$theStamp = mktime(0,0,0,$strReg[2],$strReg[3],$strReg[1]);
-} else if (ereg("([0-9]{2}):([0-9]{2}):([0-9]{2})", $theString, $strReg)) {
-$theStamp = mktime($strReg[1],$strReg[2],$strReg[3],0,0,0);
-}
-return $theStamp;
-}
-
-function makeDateTime($theString, $theFormat) {
-$theDate=date($theFormat, makeStamp($theString));
-return $theDate;
-}
-
 
 $colname_RS_CustomersEdit = "-1";
 if (isset($_GET['customers_id'])) {
@@ -64,29 +48,41 @@ if (isset($_GET['customers_id'])) {
   $colname_Recordset1 = $_GET['customers_id'];
 }
 
+
 mysql_select_db($database_bsb, $bsb);
 $query_Recordset1 = sprintf("SELECT
     `tbl_customers`.`brand_name`
-    , `tbl_fire_extinguisher`.*
-    , `tbl_extinguisher_heads`.`ext_head_brandname`
-    , `tbl_fext_type`.`fext_type`
-    , `tbl_manufacturers_fext`.`manufacturers_fext_brandname`
-    , `tbl_customers`.`customers_id`
+    , `tbl_fire_extinguisher`.`ext_head_brandname`
+    , `tbl_fire_extinguisher`.`fext_type`
+    , `tbl_fire_extinguisher`.`manufacturers_fext_brandname`
+    , `tbl_fire_extinguisher`.`installation_date`
+    , `tbl_fire_extinguisher`.`year`
+    , `tbl_fire_extinguisher`.`serialnumber`
+    , `tbl_fire_extinguisher`.`notes`
 FROM
     `bsb`.`tbl_customers`
     INNER JOIN `bsb`.`tbl_fire_extinguisher` 
-        ON (`tbl_customers`.`customers_id` = `tbl_fire_extinguisher`.`customers_id`)
-    INNER JOIN `bsb`.`tbl_extinguisher_heads` 
-        ON (`tbl_extinguisher_heads`.`extinguisher_heads_id` = `tbl_fire_extinguisher`.`extinguisher_heads_id`)
-    INNER JOIN `bsb`.`tbl_fext_type` 
-        ON (`tbl_fext_type`.`fext_type_id` = `tbl_fire_extinguisher`.`fext_type_id`)
-    INNER JOIN `bsb`.`tbl_manufacturers_fext` 
-        ON (`tbl_manufacturers_fext`.`manufacturers_fext_id` = `tbl_fire_extinguisher`.`manufacturers_fext_id`) WHERE (`tbl_customers`.`customers_id` = %s);", GetSQLValueString($colname_Recordset1, "int"));
+        ON (`tbl_customers`.`customers_id` = `tbl_fire_extinguisher`.`customers_id`) WHERE (`tbl_customers`.`customers_id` = %s)", GetSQLValueString($colname_Recordset1, "int"));
 $Recordset1 = mysql_query($query_Recordset1, $bsb) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
 
+function makeStamp($theString) {
+if (ereg("([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})", $theString, $strReg)) {
+$theStamp = mktime($strReg[4],$strReg[5],$strReg[6],$strReg[2],$strReg[3],$strReg[1]);
+} else if (ereg("([0-9]{4})-([0-9]{2})-([0-9]{2})", $theString, $strReg)) {
+$theStamp = mktime(0,0,0,$strReg[2],$strReg[3],$strReg[1]);
+} else if (ereg("([0-9]{2}):([0-9]{2}):([0-9]{2})", $theString, $strReg)) {
+$theStamp = mktime($strReg[1],$strReg[2],$strReg[3],0,0,0);
+}
+return $theStamp;
+}
+
+function makeDateTime($theString, $theFormat) {
+$theDate=date($theFormat, makeStamp($theString));
+return $theDate;
+}
 
 ?>
 
@@ -268,7 +264,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs tab-nav-right" role="tablist">
                                 <li role="presentation" class="active"><a href="#home" data-toggle="tab"><?php echo $CustomersCard ?></a></li>
-                                <li role="presentation"><a href="#profile" data-toggle="tab">PROFILE</a></li>
+                                <li role="presentation"><a href="#profile" data-toggle="tab"><?php echo $CustomersFireExt?></a></li>
                                 <li role="presentation"><a href="#messages" data-toggle="tab">MESSAGES</a></li>
                                 <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
                             </ul>

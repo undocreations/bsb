@@ -95,6 +95,7 @@
     /* customers_dets.php */
 	$CustomersCard = 'Καρτέλα Πελάτη';
 	$CustomersUpdateCard = 'Ανανέωση Καρτέλας Πελάτη';
+	$CustomersFireExt = 'Πυροσβεστήρες Πελάτη';
 /* ---------------------------------------------------- */	
 	/* ExtinguisherHeads_add.php */
 	$ExtinguisherHeadsTitle = 'Καταχώρηση Κατασκευαστή Κεφαλών';

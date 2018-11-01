@@ -37,11 +37,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "fireext_add")) {
-  $insertSQL = sprintf("INSERT INTO tbl_fire_extinguisher (customers_id, extinguisher_heads_id, fext_type_id, manufacturers_fext_id, serialnumber, `year`, installation_date, notes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['customers_id'], "int"),
-                       GetSQLValueString($_POST['extinguisher_heads_id'], "int"),
-                       GetSQLValueString($_POST['fext_type_id'], "int"),
-                       GetSQLValueString($_POST['manufacturers_fext_id'], "int"),
+  $insertSQL = sprintf("INSERT INTO tbl_fire_extinguisher (customers_id , ext_head_brandname, fext_type, manufacturers_fext_brandname, serialnumber, `year`, installation_date, notes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['customers_id '], "int"),
+                       GetSQLValueString($_POST['ext_head_brandname'], "text"),
+                       GetSQLValueString($_POST['fext_type'], "text"),
+                       GetSQLValueString($_POST['manufacturers_fext_brandname'], "text"),
                        GetSQLValueString($_POST['serialnumber'], "text"),
                        GetSQLValueString($_POST['year'], "date"),
                        GetSQLValueString($_POST['installation_date'], "date"),
@@ -298,11 +298,11 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <p>
                                         <b><?php echo $ExtinguisherHeadsPlaceholder?></b>
                                     </p>
-                                       <select class="form-control show-tick" data-live-search="true" id="extinguisher_heads_id" name="extinguisher_heads_id">
+                                       <select class="form-control show-tick" data-live-search="true" id="ext_head_brandname" name="ext_head_brandname">
                                           <?php
 												do {  
 											?>
-                                          <option value="<?php echo $row_RS_ExtinguisherHeads['extinguisher_heads_id']?>"<?php if (!(strcmp($row_RS_ExtinguisherHeads['extinguisher_heads_id'], $row_RS_ExtinguisherHeads['extinguisher_heads_id']))) {echo "selected=\"selected\"";} ?>><?php echo $row_RS_ExtinguisherHeads['ext_head_brandname']?></option>
+                                          <option value="<?php echo $row_RS_ExtinguisherHeads['ext_head_brandname']?>"<?php if (!(strcmp($row_RS_ExtinguisherHeads['ext_head_brandname'], $row_RS_ExtinguisherHeads['ext_head_brandname']))) {echo "selected=\"selected\"";} ?>><?php echo $row_RS_ExtinguisherHeads['ext_head_brandname']?></option>
                                           <?php
 											} while ($row_RS_ExtinguisherHeads = mysql_fetch_assoc($RS_ExtinguisherHeads));
 											  $rows = mysql_num_rows($RS_ExtinguisherHeads);
@@ -324,11 +324,11 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <p>
                                         <b><?php echo $ManufacturersFextPlaceholder ?></b>
                                     </p>
-                                       <select class="form-control show-tick" data-live-search="true" id="manufacturers_fext_id" name="manufacturers_fext_id">
+                                       <select class="form-control show-tick" data-live-search="true" id="manufacturers_fext_brandname" name="manufacturers_fext_brandname">
                                           <?php
 												do {  
 											?>
-                                          <option value="<?php echo $row_RS_ManufacturesFext['manufacturers_fext_id']?>"<?php if (!(strcmp($row_RS_ManufacturesFext['manufacturers_fext_id'], $row_RS_ManufacturesFext['manufacturers_fext_id']))) {echo "selected=\"selected\"";} ?>><?php echo $row_RS_ManufacturesFext['manufacturers_fext_brandname']?></option>
+                                          <option value="<?php echo $row_RS_ManufacturesFext['manufacturers_fext_brandname']?>"<?php if (!(strcmp($row_RS_ManufacturesFext['manufacturers_fext_brandname'], $row_RS_ManufacturesFext['manufacturers_fext_brandname']))) {echo "selected=\"selected\"";} ?>><?php echo $row_RS_ManufacturesFext['manufacturers_fext_brandname']?></option>
                                           <?php
 											} while ($row_RS_ManufacturesFext = mysql_fetch_assoc($RS_ManufacturesFext));
 											  $rows = mysql_num_rows($RS_ManufacturesFext);
@@ -367,11 +367,11 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                      <p>
                                         <b><?php echo $FextTypePlaceholder ?></b>
                                     </p>
-                                       <select class="form-control show-tick" data-live-search="true" id="fext_type_id" name="fext_type_id">
+                                       <select class="form-control show-tick" data-live-search="true" id="fext_type" name="fext_type">
                                           <?php
 												do {  
 											?>
-                                          <option value="<?php echo $row_RS_FextType['fext_type_id']?>"<?php if (!(strcmp($row_RS_FextType['fext_type_id'], $row_RS_FextType['fext_type_id']))) {echo "selected=\"selected\"";} ?>><?php echo $row_RS_FextType['fext_type']?></option>
+                                          <option value="<?php echo $row_RS_FextType['fext_type']?>"<?php if (!(strcmp($row_RS_FextType['fext_type'], $row_RS_FextType['fext_type']))) {echo "selected=\"selected\"";} ?>><?php echo $row_RS_FextType['fext_type']?></option>
                                           <?php
 											} while ($row_RS_FextType = mysql_fetch_assoc($RS_FextType));
 											  $rows = mysql_num_rows($RS_FextType);
