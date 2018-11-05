@@ -13,7 +13,8 @@
     $SignOut = 'Έξοδος';
 	$Delete = 'Ανενεργός';
     $Details = 'Αναλυτικά';
-	$Notes = 'Παρατηρήσεις';
+    $Notes = 'Παρατηρήσεις';
+    $Close = 'Κλείσιμο';
 /* ---------------------------------------------------- */	 
     /* Menu */
     $MenuCustomers = 'Πελάτες';
@@ -58,6 +59,7 @@
     /* main.php */
     $MainTitle = 'Main - AdminBSB';
     $MainTitleH2 = 'Dashboard';
+	$MainAutoCompletePlaceholder = 'Πληκτρολογείστε Εταιρία';
 /* ---------------------------------------------------- */
     /* profile.php */
     $ProfileTitle = 'Profile - AdminBSB';
@@ -118,6 +120,15 @@
 	$FireExtEdit = 'Επεξεργασία Πυροσβεστήρων';
 	$FireExtSerialNumber = 'Serial Number';
 	$FireExtDateCreation = 'Έτος Κατασκευής';
-	$FireExtDateAdd = 'Ημερομηνία Εγκατάστασης';
+    $FireExtDateAdd = 'Ημερομηνία Εγκατάστασης';
+    /* ---------------------------------------------------- */	
+    /* periodicinspection_add.php */
+    $PeriodIcinspectionTitle = 'Περιοδικός Έλεγχος';
+    $PeriodIcinspectionDateAsUseless = 'Ημερομηνία Χαρακτηρισμού Ως Άχρηστος';
+    $PeriodIcinspectionDateAddCheck = 'Ημερομηνία Καταχώρησης Ελέγχου';
+    $PeriodIcinspectionDateNextCheck = 'Ημερομηνία Επόμενου Ελέγχου';
+    $PeriodIcinspectionUseless = 'Άχρηστος';
+    $PeriodIcinspectionAdd = 'Καταχώρηση Περιοδικού Ελέγχου';
+
 	
 ?>

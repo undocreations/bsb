@@ -126,6 +126,19 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <!-- Overlay For Sidebars -->
                     <div class="overlay"></div>
                     <!-- #END# Overlay For Sidebars -->
+                       <!-- Search Bar -->
+                        <div class="search-bar">
+                            <div class="search-icon">
+                                <i class="material-icons">search</i>
+                            </div>
+                            <form>
+                            <input type="text" id="custsearch" name="custsearch" placeholder="START TYPING...">
+                            </form>
+                            <div class="close-search">
+                                <i class="material-icons">close</i>
+                            </div>
+                        </div>
+                        <!-- #END# Search Bar -->
                     <!-- Top Bar -->
                     <nav class="navbar">
                         <div class="container-fluid">
@@ -213,7 +226,8 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                         </div>
                                         <div class="body">
                                             Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
-                                        </div>
+                                          <input type="text" name="brand_name" id="brand_name" class="form-control input-lg" autocomplete="off"  placeholder="<?php echo $MainAutoCompletePlaceholder?>" />
+                                      </div>
                                     </div>
                                 </div>
 
@@ -292,12 +306,20 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
 
                     <!-- Waves Effect Plugin Js -->
                     <script src="../plugins/node-waves/waves.js"></script>
+                    <script src="../plugins/typehead/bootstrap3-typeahead.min.js"></script>
+                    
+                    <!-- AutoComplete Js -->
+                    <script src="../js/pages/ui/autocomplete.js"></script>
 
                     <!-- Custom Js -->
                     <script src="../js/admin.js"></script>
 
                     <!-- Demo Js -->
                     <script src="../js/demo.js"></script>
+ 
+
                 </body>
 
                 </html>
+
+

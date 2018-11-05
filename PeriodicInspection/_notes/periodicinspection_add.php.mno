@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_RS_Customers" value="name:customers_id;datatype:int,name:brand_name;datatype:string,name:name;datatype:string,name:lastname;datatype:string" />
+	<infoitem key="UD_RS_FireExtinguisher" value="name:serialnumber;datatype:string" />
+	<infoitem key="UD_RS_FextType" value="name:fext_type_id;datatype:int,name:fext_type;datatype:string" />
+	<infoitem key="UD_RS_ManufacturesFext" value="name:manufacturers_fext_id;datatype:int,name:manufacturers_fext_brandname;datatype:string" />
+</info>

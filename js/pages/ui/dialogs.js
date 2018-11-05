@@ -433,6 +433,41 @@ $(document).ready(function(){
 
 });
 /* #END# - fireext_add */
+
+/* periodicinspection_add.php */
+$(document).ready(function(){
+
+    $('#periodicinspection_add').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+
+        $.ajax({
+            type: "POST",
+            url: 'periodicinspection_add.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Καταχώρηση!",
+                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο Περιοδικό Έλεγχο.",
+                        type: "success",
+                        timer: 5000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                //location.reload();
+                window.location.href = 'http://localhost/bsb/main/main.php';
+                } ,6000);
+
+            }
+
+        });
+        return false;
+    });
+
+});
+/* #END# - periodicinspection_add */
+
 /*
 $(document).ready(function(){
   $('#customers_add').on('submit',function(e) {  //Don't foget to change the id form

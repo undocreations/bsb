@@ -1,3 +1,4 @@
+
 <?php require_once('../Connections/bsb.php'); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
@@ -30,39 +31,36 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
+/*
 mysql_select_db($database_bsb, $bsb);
-$query_Recordset1 = "SELECT useless FROM tbl_periodic_inspection";
+$query_Recordset1 = "SELECT brand_name FROM tbl_customers";
 $Recordset1 = mysql_query($query_Recordset1, $bsb) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
-?>
-<html>
-<head>
 
-<style type="text/css">
-.as {
-	color: #F00;
-}
-</style>
-</head>
-
-<body>
-<p>
-  <?php 
-if ($row_Recordset1['useless'] == 0) { // Show if recordset empty ?
-  echo "it is useless";
-   } // Show if recordset empty 
-   else if ($row_Recordset1['useless'] == 1){
-	echo "<p class='as'>  it is OK! </p> ";
-   }
-   ?>
-</p>
-<p class="as">ghjgjh</p>
-</body>
-
-
-</html>
-<?php
 mysql_free_result($Recordset1);
+*/
+?>
+
+
+<?php
+mysql_select_db($database_bsb, $bsb);
+//$connect = mysqli_connect("localhost", "root", "", "testing");
+$request = mysql_real_escape_string($_POST["query"]);
+$query = "SELECT brand_name FROM tbl_customers WHERE brand_name LIKE '%".$request."%'";
+
+
+//$Recordset1 = mysql_query($query_Recordset1, $bsb) or die(mysql_error());
+$result = mysql_query($query) or die(mysql_error());;
+
+$data = array();
+
+if(mysql_num_rows($result) > 0)
+{
+ while($row = mysql_fetch_assoc($result))
+ {
+  $data[] = $row["brand_name"];
+ }
+ echo json_encode($data);
+}
 ?>
