@@ -37,8 +37,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "fireext_add")) {
-  $insertSQL = sprintf("INSERT INTO tbl_fire_extinguisher (customers_id , ext_head_brandname, fext_type, manufacturers_fext_brandname, serialnumber, `year`, installation_date, notes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['customers_id '], "int"),
+  $insertSQL = sprintf("INSERT INTO tbl_fire_extinguisher (customers_id, ext_head_brandname, fext_type, manufacturers_fext_brandname, serialnumber, `year`, installation_date, notes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['customers_id'], "int"),
                        GetSQLValueString($_POST['ext_head_brandname'], "text"),
                        GetSQLValueString($_POST['fext_type'], "text"),
                        GetSQLValueString($_POST['manufacturers_fext_brandname'], "text"),
@@ -181,7 +181,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             <div class="navbar-header">
                                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                                 <a href="javascript:void(0);" class="bars"></a>
-                                <a class="navbar-brand" href="../index.php">
+                                <a class="navbar-brand" href="../main/main.php">
                                     <?php echo $TitleH1?>
                                 </a>
                             </div>
@@ -287,7 +287,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <p>
                                         <b><?php echo $FireExtSerialNumber?></b>
                                     </p>
-                                        <input name="serialnumber" id="serialnumber" type="text" class="form-control" placeholder="">
+                                        <input name="serialnumber" id="serialnumber" type="text" class="form-control" placeholder="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -347,7 +347,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <p>
                                         <b><?php echo $FireExtDateCreation ?></b>
                                     </p>
-                                        <input type="text" class="datepicker form-control" id="year" name="year" placeholder="">
+                                        <input type="text" class="datepicker form-control" id="year" name="year" placeholder="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +357,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <p>
                                         <b><?php echo $FireExtDateAdd ?></b>
                                     </p>
-                                        <input type="text" class="datepicker form-control" id="installation_date" name="installation_date" placeholder="">
+                                        <input type="text" class="datepicker form-control" id="installation_date" name="installation_date" placeholder="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -420,8 +420,10 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
                     <!-- Waves Effect Plugin Js -->
                     <script src="../plugins/node-waves/waves.js"></script>
-                    <!-- Bootstrap Notify Plugin Js -->
-                    <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+                    <!-- Jquery Form Validation Js -->
+                    <script src="../plugins/jquery-validation/jquery.validate.js"></script>
+                    <!-- Form Validation Js -->
+                    <script src="../js/pages/forms/form-validation.js"></script>
                 	<!-- Autosize Plugin Js -->
 				    <script src="../plugins/autosize/autosize.js"></script>
                     <!-- Moment Plugin Js -->

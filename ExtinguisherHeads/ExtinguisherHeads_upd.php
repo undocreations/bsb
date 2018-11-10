@@ -161,7 +161,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             <div class="navbar-header">
                                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                                 <a href="javascript:void(0);" class="bars"></a>
-                                <a class="navbar-brand" href="../index.php">
+                                <a class="navbar-brand" href="../main/main.php">
                                     <?php echo $TitleH1?>
                                 </a>
                             </div>
@@ -238,7 +238,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input name="ext_head_brandname" type="text" class="form-control" id="ext_head_brandname" placeholder="<?php echo $ExtinguisherHeadsPlaceholder ?>" value="<?php echo $row_RS_ExtinguisherHeadsEdit['ext_head_brandname']; ?>">
+                                            <input name="ext_head_brandname" type="text" class="form-control" id="ext_head_brandname" placeholder="<?php echo $ExtinguisherHeadsPlaceholder ?>" value="<?php echo $row_RS_ExtinguisherHeadsEdit['ext_head_brandname']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -273,8 +273,11 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <!-- Waves Effect Plugin Js -->
                     <script src="../plugins/node-waves/waves.js"></script>
                     
-                    <!-- Bootstrap Notify Plugin Js -->
-                    <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+                    <!-- Jquery Form Validation Js -->
+                    <script src="../plugins/jquery-validation/jquery.validate.js"></script>
+                    
+                    <!-- Form Validation Js -->
+                    <script src="../js/pages/forms/form-validation.js"></script>
                     
                     <!-- Custom Js -->
                     <script src="../js/admin.js"></script>

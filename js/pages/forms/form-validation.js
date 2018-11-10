@@ -56,3 +56,244 @@ $(function () {
     );
     //==================================================================================================
 });
+
+ //==================================================================================================
+ /* Customers_add.php Form Validation */
+ $(function () {
+    $('#customers_add').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# customers_add.php */
+
+/* Customers_upd.php Form Validation */
+$(function () {
+    $('#customers_edit').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# customers_upd.php */
+
+/* ExtinguisherHeads_add.php Form Validation */
+$(function () {
+    $('#ExtinguisherHeads_add').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# ExtinguisherHeads_add.php */
+
+/* ExtinguisherHeads_upd.php Form Validation */
+$(function () {
+    $('#extinguisherheads_upd').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# ExtinguisherHeads_upd.php */
+
+/* fexttype_add.php Form Validation */
+$(function () {
+    $('#fexttype_add').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# fexttype_add.php */
+
+/* fexttype_upd.php Form Validation */
+$(function () {
+    $('#fexttype_upd').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# fexttype_upd.php */
+
+/* manufacturersfext_add.php Form Validation */
+$(function () {
+    $('#manufacturersfext_add').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# manufacturersfext_add.php */
+
+/* manufacturersfext_upd.php Form Validation */
+$(function () {
+    $('#manufacturersfext_upd').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# manufacturersfext_upd.php */
+
+/* fireext_add.php Form Validation */
+$(function () {
+    $('#fireext_add').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# fireext_add.php */
+
+/* periodicinspection_add.php Form Validation */
+$(function () {
+    $('#periodicinspection_add').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+/* #END# periodicinspection_add.php */

@@ -183,7 +183,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             <div class="navbar-header">
                                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                                 <a href="javascript:void(0);" class="bars"></a>
-                                <a class="navbar-brand" href="../index.php">
+                                <a class="navbar-brand" href="../main/main.php">
                                     <?php echo $TitleH1?>
                                 </a>
                             </div>
@@ -382,7 +382,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <p>
                                         <b><?php echo $PeriodIcinspectionDateAsUseless ?></b>
                                     </p>
-                                        <input type="text" class="datepicker form-control" id="date_useless" name="date_useless" placeholder="">
+                                        <input type="text" class="datepicker form-control" id="date_useless" name="date_useless" placeholder="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -392,7 +392,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                     <p>
                                         <b><?php echo $PeriodIcinspectionDateAddCheck ?></b>
                                     </p>
-                                        <input type="text" class="datepicker form-control" id="date_add_check" name="date_add_check" placeholder="">
+                                        <input type="text" class="datepicker form-control" id="date_add_check" name="date_add_check" placeholder="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -402,7 +402,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                      <p>
                                         <b><?php echo $PeriodIcinspectionDateNextCheck ?></b>
                                     </p>
-                                    <input type="text" class="datepicker form-control" id="date_next_check" name="date_next_check" placeholder="">
+                                    <input type="text" class="datepicker form-control" id="date_next_check" name="date_next_check" placeholder="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -454,8 +454,10 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
                     <!-- Waves Effect Plugin Js -->
                     <script src="../plugins/node-waves/waves.js"></script>
-                    <!-- Bootstrap Notify Plugin Js -->
-                    <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+                    <!-- Jquery Form Validation Js -->
+                    <script src="../plugins/jquery-validation/jquery.validate.js"></script>
+                    <!-- Form Validation Js -->
+                    <script src="../js/pages/forms/form-validation.js"></script>
                 	<!-- Autosize Plugin Js -->
 				    <script src="../plugins/autosize/autosize.js"></script>
                     <!-- Moment Plugin Js -->

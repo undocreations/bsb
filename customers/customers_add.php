@@ -165,7 +165,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             <div class="navbar-header">
                                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                                 <a href="javascript:void(0);" class="bars"></a>
-                                <a class="navbar-brand" href="../index.php">
+                                <a class="navbar-brand" href="../main/main.php">
                                     <?php echo $TitleH1?>
                                 </a>
                             </div>
@@ -242,7 +242,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input name="brand_name" id="brand_name" type="text" class="form-control" placeholder="<?php echo $PlaceholderBrandName ?>">
+                                            <input name="brand_name" id="brand_name" type="text" class="form-control" placeholder="<?php echo $PlaceholderBrandName ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +252,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="name" id="name" type="text" class="form-control" placeholder="<?php echo $ProfileName ?>">
+                                        <input name="name" id="name" type="text" class="form-control" placeholder="<?php echo $ProfileName ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +260,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="lastname" id="lastname" type="text" class="form-control" placeholder="<?php echo $ProfileLastName ?>">
+                                        <input name="lastname" id="lastname" type="text" class="form-control" placeholder="<?php echo $ProfileLastName ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -277,14 +277,14 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="afm" id="afm" type="text" class="form-control" placeholder="<?php echo $PlaceholderAFM ?>">
+                                        <input name="afm" id="afm" type="text" class="form-control" placeholder="<?php echo $PlaceholderAFM ?>" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="doy" id="doy" type="text" class="form-control" placeholder="<?php echo $PlaceholderDOY ?>">
+                                        <input name="doy" id="doy" type="text" class="form-control" placeholder="<?php echo $PlaceholderDOY ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -301,14 +301,14 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="phone" id="phone" type="text" class="form-control" placeholder="<?php echo $PlaceholderPhone ?>">
+                                        <input name="phone" id="phone" type="text" class="form-control" placeholder="<?php echo $PlaceholderPhone ?>" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="mobilephone" id="mobilephone" type="text" class="form-control" placeholder="<?php echo $PlaceholderMobile ?>">
+                                        <input name="mobilephone" id="mobilephone" type="text" class="form-control" placeholder="<?php echo $PlaceholderMobile ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -353,7 +353,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                           </div>
                        <div class="row">
                       <div class="col-xs-6 js-sweetalert">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" data-type="success" id="submit" onSubmit="JSconfirm()" ><?php echo $MenuAddCustomers ?></button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" id="submit" ><?php echo $MenuAddCustomers ?></button>
                         </div>
                     </div>
                        <input type="hidden" name="MM_insert" value="customers_add">
@@ -381,16 +381,20 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <!-- Waves Effect Plugin Js -->
                     <script src="../plugins/node-waves/waves.js"></script>
                     
-                    <!-- Bootstrap Notify Plugin Js -->
-                    <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+                    <!-- Jquery Form Validation Js -->
+                    <script src="../plugins/jquery-validation/jquery.validate.js"></script>
+                    
                     
                     <!-- Custom Js -->
                     <script src="../js/admin.js"></script>
-
+                    <!-- Form Validation Js -->
+                    <script src="../js/pages/forms/form-validation.js"></script>
+                    
                     <!-- Demo Js -->
                     <script src="../js/demo.js"></script>
                     <!-- SweetAlert Plugin Js -->
 				    <script src="../plugins/sweetalert/sweetalert2.all.min.js"></script>
 				    <script src="../js/pages/ui/dialogs.js"></script>
+                    
     			</body>
                 </html>

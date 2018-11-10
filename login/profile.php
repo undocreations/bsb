@@ -158,7 +158,7 @@ $totalRows_RS_Profile1 = mysql_num_rows($RS_Profile1);
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="../index.php"><?php echo $TitleH1?></a>
+                <a class="navbar-brand" href="../main/main.php"><?php echo $TitleH1?></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

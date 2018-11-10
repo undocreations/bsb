@@ -139,7 +139,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             <div class="navbar-header">
                                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                                 <a href="javascript:void(0);" class="bars"></a>
-                                <a class="navbar-brand" href="../index.php">
+                                <a class="navbar-brand" href="../main/main.php">
                                     <?php echo $TitleH1?>
                                 </a>
                             </div>
@@ -240,7 +240,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                         <?php do { ?>
                                         <tr>
                                             <td><?php echo $row_RS_ExtinguisherHeads['ext_head_brandname']; ?></td>
-                                              <td><a href="ExtinguisherHeads_upd.php?fext_type_id=<?php echo $row_RS_ExtinguisherHeads['fext_type_id']; ?>"><img src="../images/icons/layout_edit.png" width="16" height="16" data-toggle="tooltip" data-placement="top" title="<?php echo $MenuEditCustomers ?>"></a></td>
+                                              <td><a href="ExtinguisherHeads_upd.php?extinguisher_heads_id=<?php echo $row_RS_ExtinguisherHeads['extinguisher_heads_id']; ?>"><img src="../images/icons/layout_edit.png" width="16" height="16" data-toggle="tooltip" data-placement="top" title="<?php echo $MenuEditCustomers ?>"></a></td>
                                           </tr>
                                           <?php } while ($row_RS_ExtinguisherHeads = mysql_fetch_assoc($RS_ExtinguisherHeads)); ?>
                                     </tbody>
@@ -278,11 +278,6 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     <script src="../js/admin.js"></script>
                     <!-- Demo Js -->
                     <script src="../js/demo.js"></script>
-                    <!-- Bootstrap Notify Plugin Js -->
-                    <!-- <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script> -->
-                    <!-- SweetAlert Plugin Js -->
-				    <!-- <script src="../plugins/sweetalert/sweetalert2.all.min.js"></script> -->
-				    <!-- <script src="../js/pages/ui/dialogs.js"></script> -->
     			</body>
                 </html>
                  <script>  

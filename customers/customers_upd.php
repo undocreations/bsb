@@ -174,7 +174,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             <div class="navbar-header">
                                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                                 <a href="javascript:void(0);" class="bars"></a>
-                                <a class="navbar-brand" href="../index.php">
+                                <a class="navbar-brand" href="../main/main.php">
                                     <?php echo $TitleH1?>
                                 </a>
                             </div>
@@ -251,7 +251,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input name="brand_name" type="text" class="form-control" id="brand_name" placeholder="<?php echo $PlaceholderBrandName ?>" value="<?php echo $row_RS_CustomersEdit['brand_name']; ?>">
+                                            <input name="brand_name" type="text" class="form-control" id="brand_name" placeholder="<?php echo $PlaceholderBrandName ?>" value="<?php echo $row_RS_CustomersEdit['brand_name']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +261,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="name" type="text" class="form-control" id="name" placeholder="<?php echo $ProfileName ?>" value="<?php echo $row_RS_CustomersEdit['name']; ?>">
+                                        <input name="name" type="text" class="form-control" id="name" placeholder="<?php echo $ProfileName ?>" value="<?php echo $row_RS_CustomersEdit['name']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +269,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="lastname" type="text" class="form-control" id="lastname" placeholder="<?php echo $ProfileLastName ?>" value="<?php echo $row_RS_CustomersEdit['lastname']; ?>">
+                                        <input name="lastname" type="text" class="form-control" id="lastname" placeholder="<?php echo $ProfileLastName ?>" value="<?php echo $row_RS_CustomersEdit['lastname']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -286,14 +286,14 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="afm" type="text" class="form-control" id="afm" placeholder="<?php echo $PlaceholderAFM ?>" value="<?php echo $row_RS_CustomersEdit['AFM']; ?>">
+                                        <input name="afm" type="text" class="form-control" id="afm" placeholder="<?php echo $PlaceholderAFM ?>" value="<?php echo $row_RS_CustomersEdit['AFM']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="doy" type="text" class="form-control" id="doy" placeholder="<?php echo $PlaceholderDOY ?>" value="<?php echo $row_RS_CustomersEdit['DOY']; ?>">
+                                        <input name="doy" type="text" class="form-control" id="doy" placeholder="<?php echo $PlaceholderDOY ?>" value="<?php echo $row_RS_CustomersEdit['DOY']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -310,14 +310,14 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="phone" id="phone" type="text" class="form-control" placeholder="<?php echo $PlaceholderPhone ?>"  value="<?php echo $row_RS_CustomersEdit['phone']; ?>">
+                                        <input name="phone" id="phone" type="text" class="form-control" placeholder="<?php echo $PlaceholderPhone ?>"  value="<?php echo $row_RS_CustomersEdit['phone']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        <input name="mobilephone" id="mobilephone" type="text" class="form-control" placeholder="<?php echo $PlaceholderMobile ?>"  value="<?php echo $row_RS_CustomersEdit['mobilephone']; ?>">
+                                        <input name="mobilephone" id="mobilephone" type="text" class="form-control" placeholder="<?php echo $PlaceholderMobile ?>"  value="<?php echo $row_RS_CustomersEdit['mobilephone']; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -389,9 +389,13 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
 
                     <!-- Waves Effect Plugin Js -->
                     <script src="../plugins/node-waves/waves.js"></script>
+                    <!-- Jquery Form Validation Js -->
+                    <script src="../plugins/jquery-validation/jquery.validate.js"></script>
                     
                     <!-- Bootstrap Notify Plugin Js -->
                     <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+                     <!-- Form Validation Js -->
+                     <script src="../js/pages/forms/form-validation.js"></script>
                     
                     <!-- Custom Js -->
                     <script src="../js/admin.js"></script>

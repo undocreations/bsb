@@ -140,12 +140,29 @@ function showAjaxLoaderMessage() {
     });
 }
 
+/* Customers_add.php */
 $(document).ready(function(){
 
     $('#customers_add').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
-
+          var brand_name = $("#brand_name").val();
+          var name = $("#name").val();
+          var lastname = $("#lastname").val();
+          var afm = $("#afm").val();
+          var doy = $("#doy").val();
+          var phone = $("#phone").val();
+          var mobilephone = $("#mobilephone").val();
+          
+          if (brand_name == '' || name == '' || lastname == '' || afm == '' || doy == '' || phone == '' || mobilephone == '') {
+            swal({
+               title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+               text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+               type: "warning",
+               //timer: 6000,
+               button: "Επιστροφή"
+               });
+          } else {
         $.ajax({
             type: "POST",
             url: 'customers_add.php',
@@ -166,18 +183,36 @@ $(document).ready(function(){
             }
 
         });
+    }
         return false;
     });
 
 });
+/* #END# Customers_add.php */
 
-
+/* Customers_upd.php */
 $(document).ready(function(){
 
     $('#customers_edit').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
-
+      var brand_name = $("#brand_name").val();
+      var name = $("#name").val();
+      var lastname = $("#lastname").val();
+      var afm = $("#afm").val();
+      var doy = $("#doy").val();
+      var phone = $("#phone").val();
+      var mobilephone = $("#mobilephone").val();
+      
+      if (brand_name == '' || name == '' || lastname == '' || afm == '' || doy == '' || phone == '' || mobilephone == '') {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
         $.ajax({
             type: "POST",
             url: 'customers_upd.php',
@@ -186,29 +221,43 @@ $(document).ready(function(){
             success: function(){
                     swal({
                         title: "Επιτυχής Επεξεργασία!",
-                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        text:  "Θα μεταφερθείτε στην σελίδα επεξεργασίας Πελατών.",
                         type: "success",
                         timer: 6000,
                         showConfirmButton: false
                     });
                 window.setTimeout(function(){ 
-                location.reload();
+                //location.reload();
+                window.location.href = 'customers_edit.php';
                 } ,6000);
 
             }
 
         });
+    }
         return false;
     });
 
 });
+/* #END# customers_upd.php */
+
 /* ExtinguisherHeads_add.php */
 $(document).ready(function(){
 
     $('#ExtinguisherHeads_add').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
-
+      var ext_head_brandname = $("#ext_head_brandname").val();
+            
+      if (ext_head_brandname == '' ) {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
         $.ajax({
             type: "POST",
             url: 'ExtinguisherHeads_add.php',
@@ -229,11 +278,57 @@ $(document).ready(function(){
             }
 
         });
+    }
         return false;
     });
 
 });
 /* #END# - ExtinguisherHeads_add.php */
+
+/* ExtinguisherHeads_upd.php */
+$(document).ready(function(){
+
+    $('#extinguisherheads_upd').submit(function(e) {
+        e.preventDefault();
+      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+      var ext_head_brandname = $("#ext_head_brandname").val();
+
+      if (ext_head_brandname == '' ) {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
+        $.ajax({
+            type: "POST",
+            url: 'extinguisherheads_upd.php',
+            data: $(this).serialize(),
+            cache: false,
+            success: function(){
+                    swal({
+                        title: "Επιτυχής Επεξεργασία!",
+                        text:  "Θα μεταφερθείτε στη σελίδα επεξεργασίας Κατασκευαστή Κεφαλών.",
+                        type: "success",
+                        timer: 6000,
+                        showConfirmButton: false
+                    });
+                window.setTimeout(function(){ 
+                //location.reload();
+                window.location.href = 'extinguisherheads_edit.php'
+                } ,6000);
+
+            }
+
+        });
+    }
+        return false;
+    });
+
+});
+/* #END# - ExtinguisherHeads_upd.php */
 
 /* manufacturersfext_add.php */
 
@@ -242,7 +337,17 @@ $(document).ready(function(){
     $('#manufacturersfext_add').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+      var manufacturers_fext_brandname = $("#manufacturers_fext_brandname").val();
 
+      if (manufacturers_fext_brandname == '' ) {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
         $.ajax({
             type: "POST",
             url: 'manufacturersfext_add.php',
@@ -263,6 +368,7 @@ $(document).ready(function(){
             }
 
         });
+    }
         return false;
     });
 
@@ -275,7 +381,17 @@ $(document).ready(function(){
     $('#fexttype_add').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+      var fext_type = $("#fext_type").val();
 
+      if (fext_type == '' ) {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
         $.ajax({
             type: "POST",
             url: 'fexttype_add.php',
@@ -296,6 +412,7 @@ $(document).ready(function(){
             }
 
         });
+    }
         return false;
     });
 
@@ -308,6 +425,17 @@ $(document).ready(function(){
     $('#fexttype_upd').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
+      var fext_type = $("#fext_type").val();
+
+      if (fext_type == '' ) {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
 
         $.ajax({
             type: "POST",
@@ -317,56 +445,27 @@ $(document).ready(function(){
             success: function(){
                     swal({
                         title: "Επιτυχής Επεξεργασία!",
-                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        text:  "Θα μεταφερθείτε στη σελίδα επεξεργασίας Τύπου Πυροσβεστήρα.",
                         type: "success",
                         timer: 6000,
                         showConfirmButton: false
                     });
                 window.setTimeout(function(){ 
-                location.reload();
+                //location.reload();
+                window.location.href = 'fexttype_edit.php';
                 } ,6000);
 
             }
 
         });
+    }
         return false;
     });
 
 });
 /* #END# - fexttype_upd.php */
 
-/* ExtinguisherHeads_upd.php */
-$(document).ready(function(){
 
-    $('#extinguisherheads_upd').submit(function(e) {
-        e.preventDefault();
-      //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
-
-        $.ajax({
-            type: "POST",
-            url: 'extinguisherheads_upd.php',
-            data: $(this).serialize(),
-            cache: false,
-            success: function(){
-                    swal({
-                        title: "Επιτυχής Επεξεργασία!",
-                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
-                        type: "success",
-                        timer: 6000,
-                        showConfirmButton: false
-                    });
-                window.setTimeout(function(){ 
-                location.reload();
-                } ,6000);
-
-            }
-
-        });
-        return false;
-    });
-
-});
-/* #END# - ExtinguisherHeads_upd.php */
 
 /* manufacturersfext_upd.php */
 $(document).ready(function(){
@@ -375,6 +474,17 @@ $(document).ready(function(){
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
 
+      var manufacturers_fext_brandname = $("#manufacturers_fext_brandname").val();
+
+      if (manufacturers_fext_brandname == '' ) {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
         $.ajax({
             type: "POST",
             url: 'manufacturersfext_upd.php',
@@ -383,18 +493,20 @@ $(document).ready(function(){
             success: function(){
                     swal({
                         title: "Επιτυχής Επεξεργασία!",
-                        text:  "Θα παραμείνετε στη σελίδα για να καταχωρήσετε νέο πελάτη.",
+                        text:  "Θα μεταφερθείτε στη σελίδα επεξεργασίας Κατασκευαστή Πυροσβεστήρων.",
                         type: "success",
                         timer: 6000,
                         showConfirmButton: false
                     });
                 window.setTimeout(function(){ 
-                location.reload();
+                //location.reload();
+                window.location.href = 'manufacturersfext_edit.php'
                 } ,6000);
 
             }
 
         });
+    }
         return false;
     });
 
@@ -407,7 +519,19 @@ $(document).ready(function(){
     $('#fireext_add').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
-
+      var serialnumber = $("#serialnumber").val();
+      var year = $("#year").val();
+      var installation_date = $("#installation_date").val();
+            
+      if (serialnumber == '' || year == '' || installation_date == '') {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
         $.ajax({
             type: "POST",
             url: 'fireext_add.php',
@@ -428,6 +552,7 @@ $(document).ready(function(){
             }
 
         });
+    }
         return false;
     });
 
@@ -440,7 +565,19 @@ $(document).ready(function(){
     $('#periodicinspection_add').submit(function(e) {
         e.preventDefault();
       //  var url = '{!! url() !!}/follow/{!! $profile->user->id !!}';
-
+      var date_useless = $("#date_useless").val();
+      var date_add_check = $("#date_add_check").val();
+      var date_next_check = $("#date_next_check").val();
+            
+      if (date_useless == '' || date_add_check == '' || date_next_check == '') {
+        swal({
+           title: "Υπάρχουν λάθη κατά την καταχώρηση.",
+           text:  "Θα παραμείνετε στη σελίδα για να διορθώσετε τα λάθη.",
+           type: "warning",
+           //timer: 6000,
+           button: "Επιστροφή"
+           });
+      } else {
         $.ajax({
             type: "POST",
             url: 'periodicinspection_add.php',
@@ -462,6 +599,7 @@ $(document).ready(function(){
             }
 
         });
+    }
         return false;
     });
 
