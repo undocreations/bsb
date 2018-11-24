@@ -1,4 +1,5 @@
 ﻿<?php require_once('../Connections/bsb.php'); ?>
+<?php require_once('../mods/logout.php'); ?>
     <?php
 //initialize the session
 if (!isset($_SESSION)) {
@@ -36,43 +37,18 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 
-?>
-        <?php
-if (!isset($_SESSION)) {
-  session_start();
-}
-$MM_authorizedUsers = "";
-$MM_donotCheckaccess = "true";
-
-// *** Restrict Access To Page: Grant or deny access to this page
-function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
-  $isValid = False; 
-
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
-  if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
-    $arrUsers = Explode(",", $strUsers); 
-    $arrGroups = Explode(",", $strGroups); 
-    if (in_array($UserName, $arrUsers)) { 
-      $isValid = true; 
-    } 
-    // Or, you may restrict access to only certain users based on their username. 
-    if (in_array($UserGroup, $arrGroups)) { 
-      $isValid = true; 
-    } 
-    if (($strUsers == "") && true) { 
-      $isValid = true; 
-    } 
-  } 
-  return $isValid; 
-}
-
+mysql_select_db($database_bsb, $bsb);
+$query_RS_Customers = "SELECT customers_id, brand_name FROM tbl_customers ORDER BY brand_name ASC";
+$RS_Customers = mysql_query($query_RS_Customers, $bsb) or die(mysql_error());
+$row_RS_Customers = mysql_fetch_assoc($RS_Customers);
+$totalRows_RS_Customers = mysql_num_rows($RS_Customers);
 
 ?>
+
+<?php require_once('../mods/noaccess.php'); ?>
+
             <?php require_once('../lang/el.php'); ?>
+            <?php require_once('../documentation/help.php'); ?>
                 <!DOCTYPE html>
                 <html>
 
@@ -84,23 +60,19 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                     </title>
                     <!-- Favicon-->
                     <link rel="icon" href="../favicon.ico" type="image/x-icon">
-
                     <!-- Google Fonts -->
                     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
                     <!-- Bootstrap Core Css -->
                     <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
                     <!-- Waves Effect Css -->
                     <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
-
                     <!-- Animation Css -->
                     <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
-
+   				    <!-- Bootstrap Select Css -->
+				    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" /> 
                     <!-- Custom Css -->
                     <link href="../css/style.css" rel="stylesheet">
-
                     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
                     <link href="../css/themes/all-themes.css" rel="stylesheet" />
                 </head>
@@ -208,25 +180,28 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="card">
                                         <div class="header">
-                                            <h2>
-                                                            Basic Card Title <small>Description text here...</small>
-                                                        </h2>
-                                            <ul class="header-dropdown m-r-0">
-                                                <li>
-                                                    <a href="javascript:void(0);">
-                                                        <i class="material-icons">info_outline</i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0);">
-                                                        <i class="material-icons">help_outline</i>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <h2><?php echo $SearchCustomers?></h2>
                                         </div>
                                         <div class="body">
-                                            Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
-                                          <input type="text" name="brand_name" id="brand_name" class="form-control input-lg" autocomplete="off"  placeholder="<?php echo $MainAutoCompletePlaceholder?>" />
+                                            <?php echo $SearchCustomers_hlp_Desc?>
+                                            <br /><br />
+                                        <form ACTION="../customers/customers_dets.php" id="search_cust" method="GET" name="search_cust">    
+                                  <select class="form-control show-tick" id="customers_id" name="customers_id" data-live-search="true">
+                                          <?php
+												do {  
+											?>
+                                          <option value="<?php echo $row_RS_Customers['customers_id']?>"<?php if (!(strcmp($row_RS_Customers['customers_id'], $row_RS_Customers['customers_id']))) {echo "selected=\"selected\"";} ?>><?php echo $row_RS_Customers['brand_name']?></option>
+                                          <?php
+											} while ($row_RS_Customers = mysql_fetch_assoc($RS_Customers));
+											  $rows = mysql_num_rows($RS_Customers);
+											  if($rows > 0) {
+												  mysql_data_seek($RS_Customers, 0);
+												  $row_RS_Customers = mysql_fetch_assoc($RS_Customers);
+											  }
+										   ?>
+                                        </select>
+                                          <button type="submit" class="btn btn-primary m-t-15 waves-effect" data-type="success" id="submit"><?php echo $SearchCustomers ?></button>
+                                          </form>
                                       </div>
                                     </div>
                                 </div>
@@ -289,37 +264,26 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                             </div>
                         </div>
                     </section>
-
-
-
                     <!-- Jquery Core Js -->
                     <script src="../plugins/jquery/jquery.min.js"></script>
-
                     <!-- Bootstrap Core Js -->
                     <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-
                     <!-- Select Plugin Js -->
                     <script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
                     <!-- Slimscroll Plugin Js -->
                     <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
                     <!-- Waves Effect Plugin Js -->
                     <script src="../plugins/node-waves/waves.js"></script>
                     <script src="../plugins/typehead/bootstrap3-typeahead.min.js"></script>
-                    
                     <!-- AutoComplete Js -->
                     <script src="../js/pages/ui/autocomplete.js"></script>
-
                     <!-- Custom Js -->
                     <script src="../js/admin.js"></script>
-
+                    <script src="../js/pages/forms/basic-form-elements.js"></script>
                     <!-- Demo Js -->
                     <script src="../js/demo.js"></script>
- 
-
                 </body>
-
                 </html>
-
-
+                <?php
+                mysql_free_result($RS_Customers);
+                ?>

@@ -1,4 +1,5 @@
 <?php require_once('../Connections/bsb.php'); ?>
+<?php require_once('../mods/logout.php'); ?>
 <?php 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -37,7 +38,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "customers_edit")) {
-  $updateSQL = sprintf("UPDATE tbl_customers SET brand_name=%s, branch=%s, activity=%s, name=%s, lastname=%s, AFM=%s, DOY=%s, address=%s, TK=%s, phone=%s, mobilephone=%s, fax=%s, email=%s, url=%s WHERE customers_id=%s",
+  $updateSQL = sprintf("UPDATE tbl_customers SET brand_name=%s, branch=%s, activity=%s, name=%s, lastname=%s, AFM=%s, DOY=%s, address=%s, TK=%s, phone=%s, mobilephone=%s, fax=%s, email=%s, url=%s, inactive=%s WHERE customers_id=%s",
                        GetSQLValueString($_POST['brand_name'], "text"),
                        GetSQLValueString(isset($_POST['branch']) ? "true" : "", "defined","1","0"),
                        GetSQLValueString($_POST['activity'], "text"),
@@ -52,18 +53,11 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "customers_edit")) {
                        GetSQLValueString($_POST['fax'], "int"),
                        GetSQLValueString($_POST['email'], "text"),
                        GetSQLValueString($_POST['url'], "text"),
+                       GetSQLValueString(isset($_POST['inactive']) ? "true" : "", "defined","1","0"),
                        GetSQLValueString($_POST['customers_id'], "int"));
 
   mysql_select_db($database_bsb, $bsb);
   $Result1 = mysql_query($updateSQL, $bsb) or die(mysql_error());
-/*
-  $updateGoTo = "customers_upd.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }
- */ 
-  header(sprintf("Location: %s", $updateGoTo));
 }
 
 $colname_RS_CustomersEdit = "-1";
@@ -77,41 +71,7 @@ $row_RS_CustomersEdit = mysql_fetch_assoc($RS_CustomersEdit);
 $totalRows_RS_CustomersEdit = mysql_num_rows($RS_CustomersEdit);
 ?>
 
-<?php
-if (!isset($_SESSION)) {
-  session_start();
-}
-$MM_authorizedUsers = "";
-$MM_donotCheckaccess = "true";
-
-// *** Restrict Access To Page: Grant or deny access to this page
-function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
-  $isValid = False; 
-
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
-  if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
-    $arrUsers = Explode(",", $strUsers); 
-    $arrGroups = Explode(",", $strGroups); 
-    if (in_array($UserName, $arrUsers)) { 
-      $isValid = true; 
-    } 
-    // Or, you may restrict access to only certain users based on their username. 
-    if (in_array($UserGroup, $arrGroups)) { 
-      $isValid = true; 
-    } 
-    if (($strUsers == "") && true) { 
-      $isValid = true; 
-    } 
-  } 
-  return $isValid; 
-}
-
-
-?>
+<?php require_once('../mods/noaccess.php'); ?>
 <?php require_once('../lang/el.php'); ?>
                 <!DOCTYPE html>
                 <html>
@@ -359,6 +319,16 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
                                         <label for="branch"><?php echo $PlaceholderBranch ?></label>
                                         </div>
                               </div>
+                              <div class="row clearfix">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <input <?php if (!(strcmp($row_RS_CustomersEdit['inactive'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" id="inactive" name="inactive" class="filled-in">
+                                        <label for="inactive"><?php echo $PlaceholderInactive ?></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
                        <div class="row">
                       <div class="col-xs-6 js-sweetalert">

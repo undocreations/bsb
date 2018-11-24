@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <info>
 	<infoitem key="UD_RS_Profile" value="name:name;datatype:string,name:lastname;datatype:string,name:email;datatype:string" />
+	<infoitem key="UD_RS_Customers" value="name:customers_id;datatype:int,name:brand_name;datatype:string" />
 </info>

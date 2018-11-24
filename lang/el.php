@@ -15,6 +15,7 @@
     $Details = 'Αναλυτικά';
     $Notes = 'Παρατηρήσεις';
     $Close = 'Κλείσιμο';
+	$SearchCustomers = 'Αναζήτηση Εταιρίας';
 /* ---------------------------------------------------- */	 
     /* Menu */
     $MenuCustomers = 'Πελάτες';
@@ -89,6 +90,7 @@
     $PlaceholderUrl = 'WebSite';
     $PlaceholderActivity = 'Δραστηριότητα';
     $PlaceholderBranch = 'Υποκατάστημα';
+    $PlaceholderInactive = 'Ανενεργός';
 /* ---------------------------------------------------- */
     /* customers_edit.php */
 	$CustomersTotal = 'Σύνολο Πελατών';

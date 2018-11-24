@@ -17,12 +17,12 @@
             </a>
             <ul class="ml-menu">
                 <li>
-                    <a href="../Customers/customers_add.php">
+                    <a href="../customers/customers_add.php">
                         <?php echo $MenuAddCustomers ?>
                     </a>
                 </li>
                 <li>
-                    <a href="../Customers/customers_edit.php">
+                    <a href="../customers/customers_edit.php">
                         <?php echo $MenuEditCustomers ?>
                     </a>
                 </li>
@@ -38,12 +38,12 @@
             </a>
             <ul class="ml-menu">
                 <li>
-                    <a href="../FireExt/fireext_add.php">
+                    <a href="../fireext/fireext_add.php">
                         <?php echo $MenuFireExtAdd ?>
                     </a>
                 </li>
                 <li>
-                    <a href="../FireExt/fireext_edit.php">
+                    <a href="../fireext/fireext_edit.php">
                         <?php echo $MenuFireExtEdit ?>
                     </a>
                 </li>
@@ -59,12 +59,12 @@
             </a>
             <ul class="ml-menu">
                 <li>
-                    <a href="../ExtinguisherHeads/ExtinguisherHeads_add.php">
+                    <a href="../extinguisherheads/extinguisherheads_add.php">
                         <?php echo $MenuExtinguisherHeadsAdd ?>
                     </a>
                 </li>
                 <li>
-                    <a href="../ExtinguisherHeads/ExtinguisherHeads_edit.php">
+                    <a href="../extinguisherheads/extinguisherheads_edit.php">
                         <?php echo $MenuExtinguisherHeadsEdit ?>
                     </a>
                 </li>
@@ -101,12 +101,12 @@
             </a>
             <ul class="ml-menu">
                 <li>
-                    <a href="../PeriodicInspection/periodicinspection_add.php">
+                    <a href="../periodicinspection/periodicinspection_add.php">
                         <?php echo $MenuPeriodicInspectionAdd ?>
                     </a>
                 </li>
                 <li>
-                    <a href="../PeriodicInspection/periodicinspection_edit.php">
+                    <a href="../periodicinspection/periodicinspection_edit.php">
                         <?php echo $MenuPeriodicInspectionEdit ?>
                     </a>
                 </li>
@@ -122,12 +122,12 @@
             </a>
             <ul class="ml-menu">
                 <li>
-                    <a href="../FextType/fexttype_add.php">
+                    <a href="../fexttype/fexttype_add.php">
                         <?php echo $MenuFextTypeAdd ?>
                     </a>
                 </li>
                 <li>
-                    <a href="../FextType/fexttype_edit.php">
+                    <a href="../fexttype/fexttype_edit.php">
                         <?php echo $MenuFextTypeEdit ?>
                     </a>
                 </li>

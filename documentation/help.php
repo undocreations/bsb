@@ -6,6 +6,6 @@ vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh 
 Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
 nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
 Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.';
-
+$SearchCustomers_hlp_Desc = 'Ξεκινήστε να πληκτρολογείτε το όνομα της εταιρίας, επιλέξτε το και θα εμφανιστεί στο πεδίο.';
 
 ?>
